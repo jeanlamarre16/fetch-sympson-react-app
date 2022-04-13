@@ -3,22 +3,22 @@ import axios from 'axios';
 import React from 'react';
 import QuoteCard from './components/QuoteCard';
 
-const quotation = {
-  quote: "I'm sleeping in the bath tub.", 
-  character: "Marge Simpson",
-  image: "https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FMargeSimpson.png?1497567512205",
-}
+
 
 function App() {
+  let quotation={};
 
   const getQuotation = () => {
     axios
       .get('https://simpsons-quotes-api.herokuapp.com/quotes')
       .then (reponse => {
         setQuote(reponse.data[0]);
+        console.log('ma reponse = ' + reponse.data[0]);
+        return reponse.data[0]
       })
   };
 
+  quotation = getQuotation;
   const [quote, setQuote] = useState(quotation);
 
   return (
